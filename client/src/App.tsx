@@ -1,9 +1,9 @@
 import axios, { AxiosError } from "axios";
 import { Card } from "./components/Card";
 import { UserForm } from "./components/UserForm";
-// import "./App.css";
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Badge, ListGroup, Form, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 export type UserType = {
@@ -60,16 +60,16 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
+    <Container>
       <UserForm />
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        users.map((user) => {
-          return <Card key={user.id} user={user} />;
-        })
-      )}
-    </div>
+      <div className="users-list">
+        {isLoading
+          ? "Loading..."
+          : users.map((user) => {
+              return <Card key={user.id} user={user} />;
+            })}
+      </div>
+    </Container>
   );
 }
 

@@ -21,23 +21,25 @@ export const UserForm = () => {
     }
   };
   return (
-    <div className="form">
-      <input
+    <Form className="form">
+      <Form.Control
         type="text"
         placeholder="Name"
         onChange={(e) => setName(e.currentTarget.value)}
       />
-      <input
+      <Form.Control
         type="number"
         placeholder="Age"
         onChange={(e) => setAge(Number(e.currentTarget.value))}
       />
-      <input
+      <Form.Control
         type="email"
         placeholder="Email"
         onChange={(e) => setEmail(e.currentTarget.value)}
       />
-      <button onClick={createUser}>Create User</button>
-    </div>
+      <Button variant="success" onClick={createUser}>
+        Create User
+      </Button>
+    </Form>
   );
 };

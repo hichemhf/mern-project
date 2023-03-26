@@ -1,17 +1,25 @@
 import { UserType } from "../App";
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Badge, ListGroup } from "react-bootstrap";
 type CardPropsType = {
   user: UserType;
 };
 
 export const Card = ({ user }: CardPropsType) => {
   return (
-    <div className="card">
-      <ul>
-        <li>Name:{user.name}</li>
-        <li>Age: {user.age}</li>
-        <li>Email: {user.email}</li>
-      </ul>
-    </div>
+    <ListGroup>
+      <ListGroup.Item
+        variant="dark"
+        className="d-flex justify-content-between align-items-start"
+      >
+        <div className="ms-2 me-auto">
+          <div className="fw-bold">{user.name}</div>
+          {user.email}
+        </div>
+        <Badge bg="success" pill>
+          {user.age}
+        </Badge>
+      </ListGroup.Item>
+    </ListGroup>
   );
 };
