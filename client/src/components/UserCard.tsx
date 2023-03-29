@@ -5,7 +5,7 @@ type CardPropsType = {
   user: UserType;
 };
 
-export const Card = ({ user }: CardPropsType) => {
+export const UserCard = ({ user }: CardPropsType) => {
   return (
     <ListGroup>
       <ListGroup.Item

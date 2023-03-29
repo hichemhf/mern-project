@@ -1,9 +1,9 @@
 import axios, { AxiosError } from "axios";
-import { Card } from "./components/Card";
+import { UserCard } from "./components/UserCard";
 import { UserForm } from "./components/UserForm";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container } from "react-bootstrap";
+import { Container, Card, Spinner } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 export type UserType = {
@@ -63,11 +63,27 @@ function App() {
     <Container>
       <UserForm />
       <div className="users-list">
-        {isLoading
-          ? "Loading..."
-          : users.map((user) => {
-              return <Card key={user.id} user={user} />;
-            })}
+        {error ? (
+          <Card
+            bg={"danger"}
+            text={"white"}
+            style={{ padding: "0.8rem" }}
+            className="mb-2"
+          >
+            <Card.Header>Error</Card.Header>
+            <Card.Body>
+              <Card.Text>{error} </Card.Text>
+            </Card.Body>
+          </Card>
+        ) : isLoading ? (
+          <div className="text-center">
+            <Spinner animation="border" variant="success" />
+          </div>
+        ) : (
+          users.map((user) => {
+            return <UserCard key={user.id} user={user} />;
+          })
+        )}
       </div>
     </Container>
   );
