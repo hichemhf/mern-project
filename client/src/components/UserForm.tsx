@@ -3,7 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 
-export const UserForm = () => {
+export const UserForm = ({
+  setRefresh: setRefresh,
+}: {
+  setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
   const [email, setEmail] = useState("");
@@ -18,6 +22,7 @@ export const UserForm = () => {
           email,
         })
         .then((res) => res.data);
+      setRefresh((prec) => !prec);
     }
   };
   return (

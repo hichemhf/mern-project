@@ -7,7 +7,7 @@ import { Container, Card, Spinner } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 export type UserType = {
-  id: number;
+  _id: number;
   name: string;
   age: number;
   email: string;
@@ -16,6 +16,7 @@ export type UserType = {
 function App() {
   const [users, setUsers] = useState<UserType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const [error, setError] = useState<string | null>("");
   // const users = [
   //   { id: 1, name: "hichem", age: 22, email: "hichem@live.com" },
@@ -57,11 +58,11 @@ function App() {
     };
 
     return cleanUp;
-  }, []);
+  }, [refresh]);
 
   return (
     <Container>
-      <UserForm />
+      <UserForm setRefresh={setRefresh} />
       <div className="users-list">
         {error ? (
           <Card
@@ -81,7 +82,7 @@ function App() {
           </div>
         ) : (
           users.map((user) => {
-            return <UserCard key={user.id} user={user} />;
+            return <UserCard key={user._id} user={user} />;
           })
         )}
       </div>
